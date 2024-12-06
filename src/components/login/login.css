@@ -1,0 +1,69 @@
+.container {
+    height: 90vh;
+    width: 90vw;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: burlywood;
+}
+
+.log {
+    height: 100%;
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.login form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.login form input {
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: navajowhite;
+}
+
+.login form input:hover {
+    cursor: pointer;
+    background-color: bisque;
+}
+
+.login form input:focus {
+    background-color: bisque;
+}
+
+.login form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: navajowhite;
+}
+
+.login form button:hover {
+    cursor: pointer;
+    background-color: bisque;
+}
+
+.separator {
+    height: 80%;
+    width: 2px;
+    background-color: navajowhite;
+}
