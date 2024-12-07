@@ -1,0 +1,106 @@
+.channels-list {
+    width: 50%;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    gap: 10px;
+    overflow: scroll;
+}
+
+.channel {
+    padding: 10px;
+    background-color: navajowhite;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.channel:hover {
+    cursor: pointer;
+    background-color: #aa967e;
+}
+
+.channelTitle {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+
+
+.create-channel-form {
+    width: 40%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    gap: 10px;
+}
+
+.create-channel-form textarea{
+    width: 100%;
+    line-height: 15px;
+    height: 60px;
+}
+
+.create-channel-form > span{
+    margin-top: 20px;
+    font-style: italic;
+}
+
+.search-user-field{
+    align-self: center;
+    width: 50%;
+}
+
+.create-channel-btn {
+    align-self: center;
+    font-size: 18px;
+    margin: 10px;
+    /*margin-left: 10px;*/
+}
+
+.user-info {
+    width: 165px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 5px;
+    background-color: navajowhite;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+.user-info span {
+    font-size: 20px;
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+
+.user-info div {
+    padding-left: 10px;
+    padding-right: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.selected-users-list {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    white-space: nowrap;
+    flex-wrap: wrap;
+}
+
+.selected-users-list > .user-info:first-child {
+    margin-left: 10px;
+}
+
+.selected-users-list .user-info {
+    margin-right: 10px;
+}
+
+.btm {
+    margin: 15px;
+}

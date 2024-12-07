@@ -1,0 +1,33 @@
+.main-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #b6966d;
+}
+
+.current-user {
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
+}
+
+.exit-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: navajowhite;
+}
+
+.exit-button button:hover {
+    cursor: pointer;
+    background-color: bisque;
+}
