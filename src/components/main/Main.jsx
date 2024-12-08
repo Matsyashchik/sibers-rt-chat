@@ -3,11 +3,11 @@ import {auth} from "../../lib/firebase";
 import ChannelsList from "../channelsList/channelsList";
 import {useUserStore} from "../../lib/userStore";
 import {useChatStore} from "../../lib/chatStore";
+import Chat from "../chat/Chat";
 
 const Main = () => {
     const {currentUser} = useUserStore();
-    const {chatId} = useChatStore();
-    // const channelSelected = false;
+    const {chat} = useChatStore();
 
     return <div className={"main-container"}>
         <nav className={"navigation"}>
@@ -16,8 +16,8 @@ const Main = () => {
         </nav>
         <>
             {
-                chatId
-                    ? <div>{chatId}</div>
+                chat
+                    ? <Chat />
                     : <ChannelsList />
             }
         </>

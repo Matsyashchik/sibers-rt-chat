@@ -11,14 +11,6 @@ body {
     height: 100vh;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    overflow: scroll;
-}
-
 input, textarea {
     border: none;
     outline: none;
@@ -36,4 +28,12 @@ button {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
 }
