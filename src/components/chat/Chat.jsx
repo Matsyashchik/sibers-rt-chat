@@ -7,7 +7,7 @@ import {useChatStore} from "../../lib/chatStore";
 
 const Chat = () => {
     const {currentUser} = useUserStore();
-    const {chat, participants, resetChat} = useChatStore();
+    const {chat, participants} = useChatStore();
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const massageInput = useRef();
@@ -34,7 +34,7 @@ const Chat = () => {
 
     const getUsername = (senderId) => {
         const user = participants.find(user => user.id === senderId);
-        return user ? user.username : currentUser.username;
+        return user ? user.username : "Удалённый пользователь";
     }
 
     const checkTime = (timestamp) => {
@@ -87,8 +87,6 @@ const Chat = () => {
             />
             <button className={"send-btn"} disabled={loading} onClick={handleSendMessage}>⬆</button>
         </div>
-
-        <button onClick={resetChat}>escape</button>
     </main>
 }
 

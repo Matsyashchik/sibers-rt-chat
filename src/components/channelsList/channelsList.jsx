@@ -1,7 +1,7 @@
 import {toast} from "react-toastify";
 import "./channelsPage.css";
 import {db} from "../../lib/firebase";
-import {doc, onSnapshot, setDoc, getDocs} from "firebase/firestore";
+import {doc, onSnapshot, setDoc, getDocs, updateDoc, arrayUnion} from "firebase/firestore";
 import {useEffect, useState} from "react";
 import {collection, query, where, serverTimestamp} from "firebase/firestore";
 import {useSelectedUsersStore} from "../../lib/selectedUsersStore";
@@ -59,7 +59,7 @@ const ChannelsList = () => {
                 title: title,
                 description: description,
                 creator: currentUser.id,
-                participants: selectedUsersStore.getUserIDs(),
+                participants: [currentUser.id].concat(selectedUsersStore.getUserIDs()),
                 chatId: newChatRef.id
             });
 
@@ -87,8 +87,19 @@ const ChannelsList = () => {
         setSearch(result);
     }
 
-    const handleJoin = (chat) => {
+    const handleChangeChannel = (chat) => {
         changeChat(chat);
+    }
+
+    const handleJoin = async (chat) => {
+        try {
+            const channelRef = doc(db, "channels", chat.id);
+            await updateDoc(channelRef, {
+                participants: arrayUnion(currentUser.id)
+            });
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     const resetCreating = () => {
@@ -101,16 +112,16 @@ const ChannelsList = () => {
 
         <section className={"channels-list"}>
             <h3>Мои каналы:</h3>
-            {channels.filter(c => c.creator === currentUser.id || c.participants.includes(currentUser.id))
-                .map(channel => <div key={channel.id} className={"channel"} onClick={() => {
-                    handleJoin(channel)
-                }}>
+            {channels.filter(c => c.creator === currentUser.id || c.participants?.includes(currentUser.id))
+                .map(channel =>
+                    <div key={channel.id} className={"channel"} onClick={() => {handleChangeChannel(channel)}}>
                     <b>{channel.title}</b>
                     <p>{channel.description}</p>
                 </div>)}
-            <h3>Доступные каналы:</h3>
-            {channels.filter(c => c.creator !== currentUser.id && !c.participants.includes(currentUser.id))
-                .map(channel => <div key={channel.id} className={"channel"}>
+            <h3>Присоединиться к каналу:</h3>
+            {channels.filter(c => c.creator !== currentUser.id && !c.participants?.includes(currentUser.id))
+                .map(channel =>
+                    <div key={channel.id} className={"channel"} onClick={() => {handleJoin(channel)}}>
                     <b>{channel.title}</b>
                     <p>{channel.description}</p>
                 </div>)}

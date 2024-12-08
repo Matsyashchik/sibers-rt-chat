@@ -4,6 +4,11 @@
     background-color: burlywood;
     display: flex;
     flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    height: 100%;
     overflow: hidden;
 }
 

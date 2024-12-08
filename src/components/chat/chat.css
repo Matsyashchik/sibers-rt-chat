@@ -6,6 +6,7 @@
     gap: 15px;
     overflow: scroll;
     width: 100%;
+    border-bottom: 1px solid navajowhite;
 }
 
 .massage-wrapper{
@@ -37,7 +38,7 @@
 
 .send-message-form{
     display: flex;
-    margin-top: auto;
+    margin: 20px;
     width: 50%;
 }
 
