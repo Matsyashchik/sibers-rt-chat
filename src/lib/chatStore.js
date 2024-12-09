@@ -22,7 +22,7 @@ export const useChatStore = create((set, get) => ({
     },
     resetChat: () => set({chat: null, participants: null}),
     removeUser: (user) => set(state => ({
-        participants: state.participants.filter(u => u.id !== user.id), ...state
+        participants: state.participants.filter(u => u.id !== user.id)
     })),
     getMembers: (state) => get().participants.filter(u => u.id !== state.chat?.creator),
 }))

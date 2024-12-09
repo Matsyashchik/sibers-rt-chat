@@ -1,7 +1,6 @@
 .channels-list {
-    width: 50%;
+    width: 100%;
     display: flex;
-    padding: 20px;
     flex-direction: column;
     gap: 10px;
     overflow: scroll;
@@ -9,27 +8,27 @@
 
 .channel {
     padding: 10px;
-    background-color: navajowhite;
-    border-radius: 10px;
+    border-bottom: 1px solid var(--element-bg-color);
     transition: background-color 0.3s ease-in-out;
 }
 
-.channel:hover {
+.channel:hover, .channel.active {
     cursor: pointer;
-    background-color: #aa967e;
+    background-color: var(--element-focus-color);
 }
 
-.channelTitle {
-    display: block;
-    font-weight: bold;
-    font-size: 18px;
+.channel b {
+    font-size: 22px;
 }
 
-
-
+.create-channel-dialog {
+    padding: 15px;
+    width: 60%;
+    margin: auto;
+}
 
 .create-channel-form {
-    width: 40%;
+    width: 100%;
     align-self: center;
     display: flex;
     flex-direction: column;
@@ -37,37 +36,82 @@
     gap: 10px;
 }
 
-.create-channel-form textarea{
+.create-channel-dialog-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-channel-dialog-header span {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-channel-dialog-header span:hover {
+    cursor: pointer;
+    color: var(--element-active-color);
+    transition: color 0.3s ease-in-out;
+}
+
+.create-channel-form label, .user-list {
+    font-size: 14px;
+}
+
+.create-channel-title-field {
+    width: 100%;
+    height: 40px;
+    line-height: 15px;
+    border-bottom: 2px solid var(--element-active-color);
+    border-radius: 0;
+}
+
+.create-channel-description-field {
+    font-family: 'Roboto', serif;
     width: 100%;
     line-height: 15px;
     height: 60px;
+    border-bottom: 2px solid var(--element-active-color);
+    border-radius: 0;
 }
 
-.create-channel-form > span{
+.create-channel-title-field:focus,
+.create-channel-description-field:focus,
+.search-user-field:focus {
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+    background-color: var(--element-active-color);
+}
+
+.create-channel-form > span {
+    font-size: 14px;
     margin-top: 20px;
     font-style: italic;
 }
 
-.search-user-field{
+.search-user-field {
     align-self: center;
     width: 50%;
+    border-bottom: 2px solid var(--element-active-color);
+    border-radius: 0;
 }
 
-.create-channel-btn {
-    align-self: center;
-    font-size: 18px;
-    margin: 10px;
-    /*margin-left: 10px;*/
+.user-list,
+.selected-users-list {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    white-space: nowrap;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .user-info {
-    width: 165px;
+    min-width: 100px;
     display: flex;
     justify-content: space-between;
     align-content: center;
     padding: 5px;
-    background-color: navajowhite;
-    border: 1px solid lightgray;
+    background-color: var(--element-focus-color);
+    line-height: 30px;
     border-radius: 10px;
 }
 
@@ -80,27 +124,19 @@
 .user-info div {
     padding-left: 10px;
     padding-right: 5px;
-    font-size: 24px;
+    font-size: 18px;
     cursor: pointer;
     user-select: none;
 }
 
-.selected-users-list {
-    display: flex;
-    align-items: center;
-    min-height: 40px;
-    white-space: nowrap;
-    flex-wrap: wrap;
+.user-info div:hover {
+    color: var(--main-fg-color);
+    transition: color 0.3s ease-in-out;
 }
 
-.selected-users-list > .user-info:first-child {
-    margin-left: 10px;
-}
-
-.selected-users-list .user-info {
-    margin-right: 10px;
-}
-
-.btm {
-    margin: 15px;
+.create-channel-btn {
+    align-self: center;
+    font-size: 18px;
+    margin-top: auto;
+    background-color: var(--element-focus-color);
 }

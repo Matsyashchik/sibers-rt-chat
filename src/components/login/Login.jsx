@@ -21,8 +21,8 @@ const Login = () => {
             setLoading(true);
             const res = await signInWithEmailAndPassword(auth, email, password);
             toast.success("Вход успешно выполнен");
-        } catch (error) {
-            console.log(error)
+        } catch (e) {
+            console.log(e)
             toast.error("Ошибка входа");
         } finally {
             setLoading(false);
@@ -37,12 +37,12 @@ const Login = () => {
         if (!username || !email || !password)
             return toast.warn("Пожалуйста заполните все данные");
 
-        const usersRef = collection(db, "users");
-        const q = query(usersRef, where("username", "==", username));
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-            return toast.warn("Пользователь с таким email уже существует");
-        }
+        // const usersRef = collection(db, "users");
+        // const q = query(usersRef, where("username", "==", username));
+        // const querySnapshot = await getDocs(q);
+        // if (!querySnapshot.empty) {
+        //     return toast.warn("Пользователь с таким именем уже существует");
+        // }
 
         try {
             setLoading(true);
@@ -53,8 +53,8 @@ const Login = () => {
                 id: res.user.uid,
             });
             toast.success("Вы успешно зарегистрированы");
-        } catch (error) {
-            console.log(error)
+        } catch (e) {
+            console.log(e)
             toast.error("Ошибка регистрации");
         } finally {
             setLoading(false);

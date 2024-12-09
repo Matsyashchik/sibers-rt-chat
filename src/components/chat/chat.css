@@ -2,25 +2,55 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 20px;
+    padding: 20px 10px 0;
     gap: 15px;
     overflow: scroll;
     width: 100%;
-    border-bottom: 1px solid navajowhite;
+    border-bottom: 1px solid var(--element-bg-color);
 }
 
-.massage-wrapper{
-    background-color: navajowhite;
-    padding: 10px;
-    border-radius: 10px;
+.massage-wrapper {
     max-width: 75%;
     min-width: fit-content;
     margin-right: auto;
 }
 
+.massage-wrapper img {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    bottom: 0px;
+    clear: both;
+    margin-top: auto;
+}
+
+.massage-contents {
+    float: right;
+    background-color: var(--element-bg-color);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.massage-contents:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-left-color: var(--element-bg-color);
+    border-right: 0;
+    margin-top: -20px;
+    margin-right: -20px;
+}
+
+.massage-wrapper.sender .massage-contents {
+    float: left;
+}
+
 .massage-text {
     margin-top: 10px;
-    /*align-self: flex-end;*/
 }
 
 .massage-time {
@@ -31,8 +61,10 @@
 }
 
 .massage-wrapper.sender,
+.massage-wrapper.sender .massage-sender,
 .massage-wrapper.sender .massage-text {
     align-self: flex-end;
+    text-align: right;
     margin-right: 0;
 }
 
@@ -40,15 +72,31 @@
     display: flex;
     margin: 20px;
     width: 50%;
+    align-items: center;
+    align-self: center;
 }
 
 .input-message {
     flex: 1;
     padding: 10px;
-    border: 2px solid #837777;
+    border: 2px solid var(--element-bg-color);
     border-radius: 40px;
+    background-color: var(--element-focus-color);
+    font-size: 16px;
+}
 
-    /*width: 100%*/
+.emoji-picker  {
+    position: relative;
+}
+
+.emoji-picker img {
+    cursor: pointer;
+}
+
+.emoji-wrapper {
+    position: absolute;
+    bottom: 73px;
+    left: 0;
 }
 
 .send-btn {
@@ -56,4 +104,7 @@
     height: 40px;
     width: 40px;
     margin-left: 5px;
+    font-size: 18px;
+    line-height: 24px;
+    background-color: var(--element-focus-color);
 }

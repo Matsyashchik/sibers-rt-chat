@@ -17,7 +17,8 @@ div.main-wrapper {
     justify-content: space-between;
     width: 100%;
     padding: 5px;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--element-bg-color);
+    border-radius: 12px;
     line-height: 32px;
 }
 
@@ -30,4 +31,9 @@ div.main-wrapper {
     width: 32px;
     height: 32px;
     text-align: center;
+}
+
+.member-remove-btn:hover {
+    color: var(--main-fg-color);
+    transition: color 0.3s ease-in-out;
 }

@@ -1,8 +1,8 @@
 import "./main.css";
 import {auth} from "../../lib/firebase";
-import ChannelsList from "../channelsList/channelsList";
+import ChannelsList from "../channelsList/ChannelsList";
 import Chat from "../chat/Chat";
-import MembersList from "../userList/MembersList";
+import MembersList from "../membersList/MembersList";
 import {useChatStore} from "../../lib/chatStore";
 import {useUserStore} from "../../lib/userStore";
 
@@ -18,19 +18,15 @@ const Main = () => {
     return <div className={"main-container"}>
         <nav className={"navigation"}>
             <span className={"current-user"}>{currentUser.username}</span>
-            <button className={"exit-button"} onClick={handleSignOut}>Выйти</button>
+            <span className={"exit-button"} onClick={handleSignOut}>Выйти</span>
         </nav>
-        <>
-            {
-                chatStore.chat
-                    ?
-                    <div className={"wrapper"}>
-                        <Chat />
-                        <MembersList />
-                    </div>
-                    : <ChannelsList />
-            }
-        </>
+        <div className={"main-content"}>
+            <ChannelsList/>
+            {chatStore.chat && <>
+                <Chat/>
+                <MembersList/>
+            </>}
+        </div>
     </div>
 }
 
