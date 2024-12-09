@@ -19,7 +19,7 @@ const Login = () => {
 
         try {
             setLoading(true);
-            const res = await signInWithEmailAndPassword(auth, email, password);
+            await signInWithEmailAndPassword(auth, email, password);
             toast.success("Вход успешно выполнен");
         } catch (e) {
             console.log(e)
@@ -37,12 +37,12 @@ const Login = () => {
         if (!username || !email || !password)
             return toast.warn("Пожалуйста заполните все данные");
 
-        // const usersRef = collection(db, "users");
-        // const q = query(usersRef, where("username", "==", username));
-        // const querySnapshot = await getDocs(q);
-        // if (!querySnapshot.empty) {
-        //     return toast.warn("Пользователь с таким именем уже существует");
-        // }
+        const usersRef = collection(db, "users");
+        const q = query(usersRef, where("username", "==", username));
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+            return toast.warn("Пользователь с таким именем уже существует");
+        }
 
         try {
             setLoading(true);
@@ -62,7 +62,7 @@ const Login = () => {
     }
 
     return <div className={"container"}>
-        <div className={"log"}>
+        <div className={"login-container"}>
             <div className={"login"}>
                 <h2>Добро пожаловать</h2>
                 <form onSubmit={handleLogin}>

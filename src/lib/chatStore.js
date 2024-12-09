@@ -2,8 +2,8 @@ import {create} from 'zustand'
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "./firebase";
 
-export const useChatStore = create((set, get) => ({
-    chat: null,
+export const useChannelStore = create((set, get) => ({
+    channel: null,
     participants: null,
     changeChat: async (chat) => {
         const participants = [];
@@ -18,11 +18,11 @@ export const useChatStore = create((set, get) => ({
             console.log(e)
         }
 
-        set({chat: chat, participants: participants})
+        set({channel: chat, participants: participants})
     },
-    resetChat: () => set({chat: null, participants: null}),
+    resetChat: () => set({channel: null, participants: null}),
     removeUser: (user) => set(state => ({
         participants: state.participants.filter(u => u.id !== user.id)
     })),
-    getMembers: (state) => get().participants.filter(u => u.id !== state.chat?.creator),
+    getMembers: (state) => get().participants.filter(u => u.id !== state.channel?.creator),
 }))

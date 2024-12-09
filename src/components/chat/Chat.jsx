@@ -3,7 +3,7 @@ import {db} from "../../lib/firebase";
 import {arrayUnion, doc, onSnapshot, updateDoc} from "firebase/firestore";
 import {useEffect, useRef, useState} from "react";
 import {useUserStore} from "../../lib/userStore";
-import {useChatStore} from "../../lib/chatStore";
+import {useChannelStore} from "../../lib/chatStore";
 import image from "../media/emoji-img.png"
 import EmojiPicker from "emoji-picker-react"
 import Message from "./Message";
@@ -11,7 +11,7 @@ import Message from "./Message";
 
 const Chat = () => {
     const {currentUser} = useUserStore();
-    const {chat} = useChatStore();
+    const {channel} = useChannelStore();
     const [messages, setMessages] = useState([]);
     const [pickerOpen, setPickerOpen] = useState(false);
     const massageInput = useRef();
@@ -22,20 +22,20 @@ const Chat = () => {
     }, [messages]);
 
     useEffect(() => {
-        const unSub = onSnapshot(doc(db, "chats", chat.chatId), (res) => {
+        const unSub = onSnapshot(doc(db, "chats", channel.chatId), (res) => {
             setMessages(res.data().messages);
         });
         return () => {
             unSub();
         };
-    }, [chat]);
+    }, [channel]);
 
     const handleSendMessage = async () => {
         const message = massageInput.current.value.trim();
         if (message === "") return;
         try {
             massageInput.current.value = "";
-            await updateDoc(doc(db, "chats", chat.chatId), {
+            await updateDoc(doc(db, "chats", channel.chatId), {
                 messages: arrayUnion({
                     senderId: currentUser.id,
                     text: message,

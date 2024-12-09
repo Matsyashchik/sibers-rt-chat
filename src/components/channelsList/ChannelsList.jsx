@@ -4,37 +4,37 @@ import {doc, onSnapshot, updateDoc, arrayUnion} from "firebase/firestore";
 import {useEffect, useState} from "react";
 import {collection} from "firebase/firestore";
 import {useUserStore} from "../../lib/userStore";
-import {useChatStore} from "../../lib/chatStore";
+import {useChannelStore} from "../../lib/chatStore";
 import useModal from "../../lib/useModal";
 import CreateChannel from "./createChannel";
 
 const ChannelsList = () => {
     const {currentUser} = useUserStore();
-    const {changeChat} = useChatStore();
+    const {changeChat} = useChannelStore();
     const modal = useModal();
     const [channels, setChannels] = useState([]);
     const [selectedChannel, setSelectedChannel] = useState(null);
 
     useEffect(() => {
         const unsub = onSnapshot(collection(db, "channels"), (snapshot) => {
-            const list = snapshot.docs.map(doc => ({
+            const channels = snapshot.docs.map(doc => ({
                 id: doc.id, ...doc.data()
             }));
-            setChannels(list);
+            setChannels(channels);
         });
 
         return () => unsub();
     }, [currentUser]);
 
 
-    const handleChangeChannel = (chat) => {
-        setSelectedChannel(chat);
-        changeChat(chat);
+    const handleChangeChannel = (channel) => {
+        setSelectedChannel(channel);
+        changeChat(channel);
     }
 
-    const handleJoin = async (chat) => {
+    const handleJoin = async (channel) => {
         try {
-            const channelRef = doc(db, "channels", chat.id);
+            const channelRef = doc(db, "channels", channel.id);
             await updateDoc(channelRef, {
                 participants: arrayUnion(currentUser.id)
             });

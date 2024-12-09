@@ -1,15 +1,15 @@
 import {db} from "../../lib/firebase";
 import {doc, arrayRemove, updateDoc} from "firebase/firestore";
 import {useUserStore} from "../../lib/userStore";
-import {useChatStore} from "../../lib/chatStore";
+import {useChannelStore} from "../../lib/chatStore";
 
 const Members = ({member}) => {
     const {currentUser} = useUserStore();
-    const {chat, removeUser} = useChatStore();
+    const {channel, removeUser} = useChannelStore();
 
     const handleRemoveUser = async (user) => {
         try {
-            const channelRef = doc(db, "channels", chat.id);
+            const channelRef = doc(db, "channels", channel.id);
             removeUser(user)
 
             await updateDoc(channelRef, {
@@ -22,7 +22,7 @@ const Members = ({member}) => {
 
     return <div key={member.id} className={"member-info"}>
         <span className={"member-name"}> {member.username}</span>
-            {member.id !== chat.creator && currentUser.id === chat.creator &&
+            {member.id !== channel.creator && currentUser.id === channel.creator &&
             <span onClick={() => handleRemoveUser(member)} className={"member-remove-btn"}>{"X"}</span>}
     </div>
 }

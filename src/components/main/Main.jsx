@@ -3,12 +3,12 @@ import {auth} from "../../lib/firebase";
 import ChannelsList from "../channelsList/ChannelsList";
 import Chat from "../chat/Chat";
 import MembersList from "../membersList/MembersList";
-import {useChatStore} from "../../lib/chatStore";
+import {useChannelStore} from "../../lib/chatStore";
 import {useUserStore} from "../../lib/userStore";
 
 const Main = () => {
     const {currentUser} = useUserStore();
-    const chatStore = useChatStore();
+    const chatStore = useChannelStore();
 
     const handleSignOut = () => {
         chatStore.resetChat();
@@ -22,7 +22,7 @@ const Main = () => {
         </nav>
         <div className={"main-content"}>
             <ChannelsList/>
-            {chatStore.chat && <>
+            {chatStore.channel && <>
                 <Chat/>
                 <MembersList/>
             </>}

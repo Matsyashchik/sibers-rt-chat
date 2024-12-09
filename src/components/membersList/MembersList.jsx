@@ -2,15 +2,15 @@ import "./membersList.css";
 import {db} from "../../lib/firebase";
 import {doc, onSnapshot} from "firebase/firestore";
 import {useEffect, useState} from "react";
-import {useChatStore} from "../../lib/chatStore";
+import {useChannelStore} from "../../lib/chatStore";
 import Member from "./Member";
 
 const MembersList = () => {
-    const {chat, participants, resetChat, getMembers} = useChatStore();
+    const {channel, participants, resetChat, getMembers} = useChannelStore();
     const [members, setMembers] = useState([]);
 
     useEffect(() => {
-        const unsub = onSnapshot(doc(db, "channels", chat.id), () => {
+        const unsub = onSnapshot(doc(db, "channels", channel.id), () => {
             setMembers(getMembers);
         });
         return () => {

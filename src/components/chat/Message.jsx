@@ -1,10 +1,10 @@
 import {useUserStore} from "../../lib/userStore";
-import {useChatStore} from "../../lib/chatStore";
+import {useChannelStore} from "../../lib/chatStore";
 import avatar from "../media/avatar.png"
 
 const Message = ({message}) => {
     const {currentUser} = useUserStore();
-    const {participants} = useChatStore();
+    const {participants} = useChannelStore();
 
     const formatUsername = (senderId) => {
         const user = participants.find(user => user.id === senderId);
@@ -20,10 +20,7 @@ const Message = ({message}) => {
     }
 
     return <div className={currentUser.id === message.senderId ? "massage-wrapper sender" : "massage-wrapper"}>
-        {/*<div className={"avatar"}>*/}
-        {/*</div>*/}
         <img alt={"avatar"} src={avatar}/>
-
         <div className={"massage-contents"}>
             <b className={"massage-sender"}>{formatUsername(message.senderId)}</b>
             <p className={"massage-text"}>{message.text}
