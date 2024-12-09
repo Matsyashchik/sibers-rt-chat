@@ -5,7 +5,6 @@ import {useEffect, useRef, useState} from "react";
 import {useUserStore} from "../../lib/userStore";
 import {useChatStore} from "../../lib/chatStore";
 import image from "../media/emoji-img.png"
-import avatar from "../media/avatar.png"
 import EmojiPicker from "emoji-picker-react"
 import Message from "./Message";
 
